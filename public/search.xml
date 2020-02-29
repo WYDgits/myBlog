@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>解决Hexo引入图片时的路径错误</title>
+      <link href="/2020/02/28/five/"/>
+      <url>/2020/02/28/five/</url>
+      
+        <content type="html"><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><blockquote><p>hexo在文章中引入图片有两种方法</p><blockquote><p>前提：修改<code>_config.yml</code>配置文件中的<code>post_asset_folder</code>项为true。<br><em>是为了在创建博客的时候，同时创建一个同名文件夹</em></p></blockquote><ul><li>不使用插件：</li></ul></blockquote><pre><code>{% asset_img 这是一个新的博客的图片.jpg 这是一个新的博客的图片的说明 %}</code></pre><blockquote><ul><li>使用<a href="https://github.com/xcodebuild/hexo-asset-image" target="_blank" rel="noopener">插件</a>：</li></ul></blockquote><pre><code>&lt;code&gt;npm install hexo-asset-image --save&lt;/code&gt;</code></pre><p><strong>但是！插件好像有bug，我的图片路径一直时错误的，而显示不出来！</strong></p><h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><blockquote><p>打开<code>/node_modules/hexo-asset-image/index.js</code>，将内容更换为下面的代码</p></blockquote><pre><code>&apos;use strict&apos;;var cheerio = require(&apos;cheerio&apos;);// http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in-a-stringfunction getPosition(str, m, i) {  return str.split(m, i).join(m).length;}var version = String(hexo.version).split(&apos;.&apos;);hexo.extend.filter.register(&apos;after_post_render&apos;, function(data){  var config = hexo.config;  if(config.post_asset_folder){        var link = data.permalink;    if(version.length &gt; 0 &amp;&amp; Number(version[0]) == 3)       var beginPos = getPosition(link, &apos;/&apos;, 1) + 1;    else       var beginPos = getPosition(link, &apos;/&apos;, 3) + 1;    // In hexo 3.1.1, the permalink of &quot;about&quot; page is like &quot;.../about/index.html&quot;.    var endPos = link.lastIndexOf(&apos;/&apos;) + 1;    link = link.substring(beginPos, endPos);    var toprocess = [&apos;excerpt&apos;, &apos;more&apos;, &apos;content&apos;];    for(var i = 0; i &lt; toprocess.length; i++){      var key = toprocess[i];      var $ = cheerio.load(data[key], {        ignoreWhitespace: false,        xmlMode: false,        lowerCaseTags: false,        decodeEntities: false      });      $(&apos;img&apos;).each(function(){        if ($(this).attr(&apos;src&apos;)){            // For windows style path, we replace &apos;\&apos; to &apos;/&apos;.            var src = $(this).attr(&apos;src&apos;).replace(&apos;\\&apos;, &apos;/&apos;);            if(!/http[s]*.*|\/\/.*/.test(src) &amp;&amp;               !/^\s*\//.test(src)) {              // For &quot;about&quot; page, the first part of &quot;src&quot; can&apos;t be removed.              // In addition, to support multi-level local directory.              var linkArray = link.split(&apos;/&apos;).filter(function(elem){                return elem != &apos;&apos;;              });              var srcArray = src.split(&apos;/&apos;).filter(function(elem){                return elem != &apos;&apos; &amp;&amp; elem != &apos;.&apos;;              });              if(srcArray.length &gt; 1)                srcArray.shift();              src = srcArray.join(&apos;/&apos;);              $(this).attr(&apos;src&apos;, config.root + link + src);              console.info&amp;&amp;console.info(&quot;update link as:--&gt;&quot;+config.root + link + src);            }        }else{            console.info&amp;&amp;console.info(&quot;no src attr, skipped...&quot;);            console.info&amp;&amp;console.info($(this));        }      });      data[key] = $.html();    }  }});</code></pre><blockquote><p>最好重启下，因为我执行<code>hexo g</code>之后没有立即改变，之后就可以正常显示图片了</p></blockquote><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><blockquote><p><a href="https://zhuanyongxigua.github.io/2017/05/19/Hexo%E5%8F%91%E5%B8%83%E5%8D%9A%E5%AE%A2%E5%BC%95%E7%94%A8%E8%87%AA%E5%B8%A6%E5%9B%BE%E7%89%87%E7%9A%84%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">Hexo发布博客引用自带图片的方法</a><br><a href="https://blog.csdn.net/xjm850552586/article/details/84101345" target="_blank" rel="noopener">hexo引用本地图片无法显示</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>计算机网络基础知识</title>
+      <link href="/2020/02/28/four/"/>
+      <url>/2020/02/28/four/</url>
+      
+        <content type="html"><![CDATA[<h1 id="典型的数据通信模型"><a href="#典型的数据通信模型" class="headerlink" title="典型的数据通信模型"></a>典型的数据通信模型</h1><p><img src="/2020/02/28/four/1.png" alt="1.png"></p><blockquote><p>如果两个计算机是通过交换机进行通信的，直接用数字比特流进行通信。</p></blockquote><h1 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h1><img src="/2020/02/28/four/2.png" class title="这是一个新的博客的图片的说明"><h1 id="信道"><a href="#信道" class="headerlink" title="信道"></a>信道</h1><p><img src="/2020/02/28/four/3.png" alt></p><blockquote><ul><li>单工通信：例如电视和电视台，你可以接受电视台的信号，但是无法向电视台发送信号。</li><li>半双工通信：例如常用的对讲机。</li><li>全双工通信：例如我们的手机、电话通信。</li></ul></blockquote><h1 id="基带信号、带通信号"><a href="#基带信号、带通信号" class="headerlink" title="基带信号、带通信号"></a>基带信号、带通信号</h1><p><img src="/2020/02/28/four/4.png" alt></p><h1 id="基本的信号调制方法"><a href="#基本的信号调制方法" class="headerlink" title="基本的信号调制方法"></a>基本的信号调制方法</h1><p><img src="/2020/02/28/four/5-1.png" alt><br><img src="/2020/02/28/four/5-2.png" alt></p><h1 id="常见编码"><a href="#常见编码" class="headerlink" title="常见编码"></a>常见编码</h1><p><img src="/2020/02/28/four/6-1.png" alt><br><img src="/2020/02/28/four/6-2.png" alt></p><h2 id="曼彻斯特编码"><a href="#曼彻斯特编码" class="headerlink" title="曼彻斯特编码"></a>曼彻斯特编码</h2><p><img src="/2020/02/28/four/6-3.png" alt></p><h2 id="差分曼彻斯特编码"><a href="#差分曼彻斯特编码" class="headerlink" title="差分曼彻斯特编码"></a>差分曼彻斯特编码</h2><p><img src="/2020/02/28/four/6-4.png" alt></p><h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><p><img src="/2020/02/28/four/6-5.png" alt></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> NetWork </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>FTP、SFTP、SCP的区别</title>
+      <link href="/2020/02/28/three/"/>
+      <url>/2020/02/28/three/</url>
+      
+        <content type="html"><![CDATA[<h1 id="它们是什么？"><a href="#它们是什么？" class="headerlink" title="它们是什么？"></a>它们是什么？</h1><h2 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h2><blockquote><p>是TCP/IP网络上两台计算机传送文件的协议，FTP是在TCP/IP网络和INTERNET上最早使用的协议之一，它属于网络协议组的应用层。FTP客户机可以给服务器发出命令来下载文件，上载文件，创建或改变服务器上的目录。相比于HTTP，FTP协议要复杂得多。复杂的原因，是因为FTP协议要用到两个TCP连接，一个是命令链路，用来在FTP客户端与服务器之间传递命令；另一个是数据链路，用来上传或下载数据。FTP是基于TCP协议的，因此iptables防火墙设置中只需要放开指定端口（21 + PASV端口范围）的TCP协议即可。 </p></blockquote><blockquote><p>FTP工作模式：</p><blockquote><p>PORT（主动）方式的连接过程是：客户端向服务器的FTP端口（默认是21）发送连接请求，服务器接受连接，建立一条命令链路。当需要传送数据时，客户端在命令链路上用PORT命令告诉服务器：“我打开了一个1024+的随机端口，你过来连接我”。于是服务器从20端口向客户端的1024+随机端口发送连接请求，建立一条数据链路来传送数据。<br>PASV（Passive被动）方式的连接过程是：客户端向服务器的FTP端口（默认是21）发送连接请求，服务器接受连接，建立一条命令链路。当需要传送数据时，服务器在命令链路上用PASV命令告诉客户端：“我打开了一个1024+的随机端口，你过来连接我”。于是客户端向服务器的指定端口发送连接请求，建立一条数据链路来传送数据。<br>PORT方式，服务器会主动连接客户端的指定端口，那么如果客户端通过代理服务器链接到internet上的网络的话，服务器端可能会连接不到客户端本机指定的端口，或者被客户端、代理服务器防火墙阻塞了连接，导致连接失败。PASV方式，服务器端防火墙除了要放开21端口外，还要放开PASV配置指定的端口范围。</p></blockquote></blockquote><h2 id="SFTP"><a href="#SFTP" class="headerlink" title="SFTP"></a>SFTP</h2><blockquote><p>安全文件传送协议。可以为传输文件提供一种安全的加密方法。SFTP与 FTP有着几乎一样的语法和功能。SFTP为SSH的一部份，是一种传输文件到服务器的安全方式。在SSH软件包中，已经包含了一个叫作SFTP(Secure File Transfer Protocol)的安全文件传输子系统，SFTP本身没有单独的守护进程，它必须使用sshd守护进程（端口号默认是22）来完成相应的连接操作，所以从某种意义上来说，SFTP并不像一个服务器程序，而更像是一个客户端程序。SFTP同样是使用加密传输认证信息和传输的数据，所以，使用SFTP是非常安全的。但是，由于这种传输方式使用了加密/解密技术，所以传输效率比普通的FTP要低得多，如果您对网络安全性要求更高时，可以使用SFTP代替FTP。</p></blockquote><pre><code>登陆远程主机：  sftp user@host  针对本机的命令都加上l:  lcd，lpwd  将本机文件上传到远程：  put filename.txt [some/directory]  将当前文件夹下的文件上传到远程：  mput *.* // multiple  下载远程文件到本地:  get filename.file [some/directory]  下载目录下所有远程文件到本地：  mget *.* [some/directory]  退出：  bye/exit/quit</code></pre><h2 id="SCP"><a href="#SCP" class="headerlink" title="SCP"></a>SCP</h2><blockquote><p>SCP就是Secure copy，是用来进行远程文件复制的，并且整个复制过程是加密的。数据传输使用ssh，并且和使用和ssh相同的认证方式，提供相同的安全保证。</p></blockquote><pre><code>拷贝本地文件到远程：  scp filename.txt user@host:some/directory  拷贝本地文件到远程，使用指定端口：  scp -P 2234 filename.txt user@host:some/directory  拷贝多个文件到远程home：  scp filename1.txt filename2.txt user@host:~  拷贝远程文件到本地：  scp user@host:directory/filename.txt  /directory  拷贝远程文件夹到本地：  scp -r user@host:directory/folder  .  拷贝远程文件到远程：  scp user@host1:directory/filename.txt  user@host1:directory</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><blockquote><p><a href="https://www.cnblogs.com/xingxia/p/system_ftp.html" target="_blank" rel="noopener">文件传输协议FTP、SFTP和SCP</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 文件传输 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> FTP </tag>
+            
+            <tag> SFTP </tag>
+            
+            <tag> SCP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2020/02/28/hello-world/"/>
+      <url>/2020/02/28/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> others </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Flex布局详解</title>
+      <link href="/2020/02/28/two/"/>
+      <url>/2020/02/28/two/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、Flex布局是什么"><a href="#一、Flex布局是什么" class="headerlink" title="一、Flex布局是什么"></a>一、Flex布局是什么</h2><h6 id="Flex-是-Flexible-Box-的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。"><a href="#Flex-是-Flexible-Box-的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。" class="headerlink" title="Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。"></a>Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。</h6><p>任何一个容器都可以指定为Flex布局</p><pre><code>.box{     display: flex;}</code></pre><p>行内元素也可以使用Flex布局</p><pre><code>.box{    display:inline-flex}</code></pre><p>Webkit内核的浏览器，必须加上-webkit前缀</p><pre><code>.box{    display:-webkit-flex;/* Safari */    display:flex;}</code></pre><p><b>注意!</b>，设为Flex布局之后，子元素的<kbd>float</kbd>、<kbd>clear</kbd>和<kbd>vertical-align</kbd>属性将失效</p><h2 id="二、基本概念"><a href="#二、基本概念" class="headerlink" title="二、基本概念"></a>二、基本概念</h2><p>采用 Flex 布局的元素，称为 Flex 容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称”项目”。</p><p><img src="https://images.cnblogs.com/cnblogs_com/adongyo/1643144/o_200207025659bg2015071004.png" alt></p><blockquote><p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。项目默认沿主轴排列。</p></blockquote><blockquote><blockquote><p>主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；</p></blockquote></blockquote><blockquote><blockquote><p>交叉轴的开始位置叫做cross start，结束位置叫做cross end。</p></blockquote></blockquote><blockquote><p>单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。</p></blockquote><h2 id="三、容器的属性"><a href="#三、容器的属性" class="headerlink" title="三、容器的属性"></a>三、容器的属性</h2><blockquote><p>以下6个属性设置在容器上</p><ul><li>flex-direction</li><li>flex-wrap</li><li>flex-flow</li><li>justify-content</li><li>align-items</li><li>align-content</li></ul></blockquote><h4 id="3-1-flex-direction属性"><a href="#3-1-flex-direction属性" class="headerlink" title="3.1 flex-direction属性"></a>3.1 flex-direction属性</h4><p>flex-direction属性决定主轴的方向（即项目的排列方向）。</p><pre><code>.box {  flex-direction: row | row-reverse | column | column-reverse;}</code></pre><p><img src="https://images.cnblogs.com/cnblogs_com/adongyo/1643144/o_200207025707bg2015071005.png" alt></p><blockquote><p>它可能有4个值</p><ul><li>row（默认值）：主轴为水平方向，起点在左端。</li><li>row-reverse：主轴为水平方向，起点在右端。</li><li>column：主轴为垂直方向，起点在上沿。</li><li>column-reverse：主轴为垂直方向，起点在下沿。</li></ul></blockquote><h3 id="3-2-flex-wrap属性"><a href="#3-2-flex-wrap属性" class="headerlink" title="3.2 flex-wrap属性"></a>3.2 flex-wrap属性</h3><p>默认情况下，项目都排在一条线(又称“轴线”)上。flex-wrap属性定义，如果一条轴线排不下，如何换行</p><p><img src="https://images.cnblogs.com/cnblogs_com/adongyo/1643144/o_200207025807bg2015071006.png" alt></p><pre><code>.box{  flex-wrap: nowrap | wrap | wrap-reverse;}</code></pre><blockquote><p>它可能取三个值</p><ul><li>nowrap（默认）：不换行。<br><img src="https://images.cnblogs.com/cnblogs_com/adongyo/1643144/o_200207025812bg2015071007.png" alt></li><li>wrap：换行，第一行在上方。<br><img src="https://images.cnblogs.com/cnblogs_com/adongyo/1643144/o_200207025819bg2015071008.jpg" alt></li><li>wrap-reverse：换行，第一行在下方。<br><img src="https://images.cnblogs.com/cnblogs_com/adongyo/1643144/o_200207025823bg2015071009.jpg" alt></li></ul></blockquote><h3 id="3-3-flex-flow属性"><a href="#3-3-flex-flow属性" class="headerlink" title="3.3 flex-flow属性"></a>3.3 flex-flow属性</h3><p>flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</p><pre><code>.box {  flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;}</code></pre><h3 id="3-4-justify-content属性"><a href="#3-4-justify-content属性" class="headerlink" title="3.4  justify-content属性"></a>3.4  justify-content属性</h3><p>justify-content属性定义了项目在主轴上的对齐方式。</p><pre><code>.box {  justify-content: flex-start | flex-end | center | space-between | space-around;}</code></pre><p><img src="https://images.cnblogs.com/cnblogs_com/adongyo/1643144/o_200207025828bg2015071010%20(1).png" alt></p><blockquote><p>它可能取5个值，具体对齐方式与轴的方向有关。下面假设主轴为从左到右。</p><ul><li>flex-start（默认值）：左对齐</li><li>flex-end：右对齐</li><li>center： 居中</li><li>space-between：两端对齐，项目之间的间隔都相等。</li><li>space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</li></ul></blockquote><h3 id="3-5-align-items属性"><a href="#3-5-align-items属性" class="headerlink" title="3.5  align-items属性"></a>3.5  align-items属性</h3><p>align-items属性定义项目在交叉轴上如何对齐。</p><pre><code>.box {  align-items: flex-start | flex-end | center | baseline | stretch;}</code></pre><p><img src="https://images.cnblogs.com/cnblogs_com/adongyo/1643144/o_200207025833bg2015071011.png" alt></p><blockquote><p>它可能取5个值，具体的对齐方式与交叉轴的方向有关，下面假设交叉轴从上到下。</p><ul><li>flex-start：交叉轴的起点对齐。</li><li>flex-end：交叉轴的终点对齐。</li><li>center：交叉轴的中点对齐。</li><li>baseline: 项目的第一行文字的基线对齐。</li><li>stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</li></ul></blockquote><h3 id="3-6-align-content属性"><a href="#3-6-align-content属性" class="headerlink" title="3.6 align-content属性"></a>3.6 align-content属性</h3><p>align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</p><pre><code>.box {  align-content: flex-start | flex-end | center | space-between | space-around | stretch;}</code></pre><p><img src="https://images.cnblogs.com/cnblogs_com/adongyo/1643144/o_200207025837bg2015071012.png" alt></p><blockquote><p>它可能取6个值。</p><ul><li>lex-start：与交叉轴的起点对齐。</li><li>flex-end：与交叉轴的终点对齐。</li><li>center：与交叉轴的中点对齐。</li><li>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</li><li>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li><li>stretch（默认值）：轴线占满整个交叉轴。</li></ul></blockquote><h2 id="四、项目的属性"><a href="#四、项目的属性" class="headerlink" title="四、项目的属性"></a>四、项目的属性</h2><blockquote><p>以下6个属性设置在项目上。</p><ul><li>order</li><li>flex-grow</li><li>flex-shrink</li><li>flex-basis</li><li>flex</li><li>align-self</li></ul></blockquote><h3 id="4-1-order属性"><a href="#4-1-order属性" class="headerlink" title="4.1 order属性"></a>4.1 order属性</h3><p>order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p><pre><code>.item {  order: &lt;integer&gt;;}</code></pre><p><img src="https://images.cnblogs.com/cnblogs_com/adongyo/1643144/o_200207025840bg2015071013.png" alt></p><h3 id="4-2-flex-grow属性"><a href="#4-2-flex-grow属性" class="headerlink" title="4.2 flex-grow属性"></a>4.2 flex-grow属性</h3><p>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</p><pre><code>.item {  flex-grow: &lt;number&gt;; /* default 0 */}</code></pre><p><img src="https://images.cnblogs.com/cnblogs_com/adongyo/1643144/o_200207025844bg2015071014.png" alt><br>如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p><h3 id="4-3-flex-shrink属性"><a href="#4-3-flex-shrink属性" class="headerlink" title="4.3 flex-shrink属性"></a>4.3 flex-shrink属性</h3><p>flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p><pre><code>.item {  flex-shrink: &lt;number&gt;; /* default 1 */}</code></pre><p><img src="https://images.cnblogs.com/cnblogs_com/adongyo/1643144/o_200207025848bg2015071015.jpg" alt><br>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。</p><p>负值对该属性无效。</p><h3 id="4-4-flex-basis属性"><a href="#4-4-flex-basis属性" class="headerlink" title="4.4 flex-basis属性"></a>4.4 flex-basis属性</h3><p>flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。</p><pre><code>.item {  flex-basis: &lt;length&gt; | auto; /* default auto */}</code></pre><p>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</p><h3 id="4-5-flex属性"><a href="#4-5-flex属性" class="headerlink" title="4.5 flex属性"></a>4.5 flex属性</h3><p>flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。</p><pre><code>.item {  flex: none | [ &lt;&apos;flex-grow&apos;&gt; &lt;&apos;flex-shrink&apos;&gt;? || &lt;&apos;flex-basis&apos;&gt; ]}</code></pre><p>该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。</p><p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p><h3 id="4-6-align-self属性"><a href="#4-6-align-self属性" class="headerlink" title="4.6 align-self属性"></a>4.6 align-self属性</h3><p>align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p><pre><code>.item {  align-self: auto | flex-start | flex-end | center | baseline | stretch;}</code></pre><p><img src="https://images.cnblogs.com/cnblogs_com/adongyo/1643144/o_200207025852bg2015071016.png" alt></p><p>该属性可能取6个值，除了auto，其他都与align-items属性完全一致。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote><p><a href="http://caibaojian.com/flexbox-basic-tourial.html" target="_blank" rel="noopener">Flex布局入门</a></p><p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">Flex 布局教程：语法篇</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> CSS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CSS </tag>
+            
+            <tag> Flex </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo + Docker 搭建博客</title>
+      <link href="/2020/02/28/first/"/>
+      <url>/2020/02/28/first/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h1><h2 id="Linux服务器"><a href="#Linux服务器" class="headerlink" title="Linux服务器"></a>Linux服务器</h2><blockquote><p>保证自己服务器上的端口对外开放，即设置相应的防火墙规则</p></blockquote><h2 id="安装好hexo"><a href="#安装好hexo" class="headerlink" title="安装好hexo"></a>安装好hexo</h2><blockquote><p>安装：<code>npm install hexo-cli -g</code></p></blockquote><blockquote><p>初始化搭建：<code>npm init myBlog</code>,myBlog 是自己设置的名字，即为生成的文件夹</p></blockquote><blockquote><p>进入文件夹，添加依赖：<code>cd myBlog</code> <code>npm install</code></p></blockquote><blockquote><p>完成了hexo的安装和初始化，为了能进行本地预览<br>安装hexo-server：<code>sudo npm install hexo-server</code></p></blockquote><blockquote><p>生成静态页面并打开本地服务：<code>hexo generate(或hexo g)</code><code>hexo server(或hexo s)</code></p></blockquote><blockquote><p>根据提示，进入<code><a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></code> </p></blockquote><h2 id="安装好docker"><a href="#安装好docker" class="headerlink" title="安装好docker"></a>安装好docker</h2><blockquote><p>首先需要在自己的Linux服务器上面安装好docker，详细安装过程请查看<strong><a href="https://www.runoob.com/docker/ubuntu-docker-install.html" target="_blank" rel="noopener">&gt;&gt;&gt;</a></strong></p></blockquote><blockquote><p>搭建服务器，我以apache示范，其他的请自行百度</p></blockquote><blockquote><p>拉取镜像：<code>docker pull httpd</code></p></blockquote><h1 id="关键"><a href="#关键" class="headerlink" title="关键"></a>关键</h1><h2 id="共享文件"><a href="#共享文件" class="headerlink" title="共享文件"></a>共享文件</h2><blockquote><p>由于执行<code>hexo generate(或hexo g)</code>后，会生成一个放到一个<strong>public</strong>文件中，所以需要把该文件夹与docker容器内的首页文件夹实现<strong>共享</strong>，这样我们修改<strong>public</strong>内文件(即执行 <code>hexo g</code>)后，能够实时更新</p></blockquote><blockquote><p>执行：<code>docker run --name apache -v /home/myBlog/public/:/usr/local/apache2/htdocs/  -p 80:80 -d httpd</code></p></blockquote><blockquote><p>浏览器中输入服务器的ip地址或者域名，即可查看。</p></blockquote><h1 id="扩展–更换主题"><a href="#扩展–更换主题" class="headerlink" title="扩展–更换主题"></a>扩展–更换主题</h1><h2 id="了解主题目录结构"><a href="#了解主题目录结构" class="headerlink" title="了解主题目录结构"></a>了解主题目录结构</h2><blockquote><p>myBlog  //博客根目录</p><blockquote><p>_config.yml  //博客配置文件<br>themes  //主题目录</p><blockquote><p>landscape  //默认主题</p><blockquote><p>_config.yml  //对应主题的配置文件</p></blockquote></blockquote></blockquote></blockquote><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><blockquote><p>以 <strong><a href="https://github.com/bolnh/hexo-theme-material" target="_blank" rel="noopener">hexo-theme-material</a></strong>举例</p></blockquote><pre><code>cd themesgit clone https://github.com/bolnh/hexo-theme-material.git material</code></pre><p>或</p><pre><code>npm install hexo-materialcd themescp -r node_modules/hexo-material material</code></pre><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><blockquote><p>进入<code>myBlog/themes/material/</code>，看该目录下的是否有 <code>_config.yml</code> ，没有就把 <code>_config.template.yml</code>文件copy一份，重命名为_config.yml</p></blockquote><blockquote><p>再进入<code>myBlog/</code>，打开<code>_config.yml</code> ，把其中的<code>themes</code> 字段后的值设置为主题文件名<br><em>比如：我上面设置的主题文件明是 material，那么就需要设置为material</em></p></blockquote><pre><code># Extensions## Plugins: https://hexo.io/plugins/## Themes: https://hexo.io/themes/theme: &lt;主题文件夹的名称&gt;</code></pre><blockquote><p>然后直接<code>hexo g</code>即可</p></blockquote><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><blockquote><p><a href="https://blog.csdn.net/u010725842/article/details/80672739" target="_blank" rel="noopener">Linux下使用Hexo搭建github博客</a><br><a href="https://www.simon96.online/2018/10/12/hexo-tutorial/" target="_blank" rel="noopener">最全Hexo博客搭建+主题优化+插件配置+常用操作+错误分析</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docker </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+    
+    
+    <entry>
+      <title>about</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>links</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>timeline</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+  
+</search>
