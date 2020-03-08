@@ -5,8 +5,8 @@
 # Site
 title: 阿东哟
 subtitle: '嘘~~'
-description: 'adongyo'
-keywords:
+description: '阿东的博客'
+keywords: 'adong,阿东哟,阿东'
 author: 阿东哟
 language: zh-CN
 timezone: ''
@@ -98,6 +98,29 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: material
+
+
+#live2d
+live2d:
+  enable: true
+  scriptFrom: local
+  pluginRootPath: live2dw/
+  pluginJsPath: lib/
+  pluginModelPath: assets/
+  tagMode: false
+  debug: false
+  model:
+    use: live2d-widget-model-hibiki
+  display:
+    position: left
+    width: 100
+    height: 200
+  mobile:
+    show: true
+    scale: 0.5
+  react:
+    opacity: 0.9
+
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

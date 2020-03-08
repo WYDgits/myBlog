@@ -45,7 +45,7 @@ uiux:
 # JS Effect Switches
 js_effect:
     fade: true
-    smoothscroll: true
+    smoothscroll: false
 
 # Reading experience
 reading:
