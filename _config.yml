@@ -1,11 +1,11 @@
-﻿# Hexo Configuration
+# Hexo Configuration
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
 title: 阿东哟
 subtitle: '嘘~~'
-description: '菜鸟一枚'
+description: 'adongyo'
 keywords:
 author: 阿东哟
 language: zh-CN
