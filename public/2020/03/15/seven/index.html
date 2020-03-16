@@ -37,7 +37,7 @@
     
     <title>
         
-            Hexo + Docker 搭建博客 | 
+            Docker笔记总结 | 
         
         阿东哟
     </title>
@@ -49,7 +49,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="阿东哟">
     <meta name="description" itemprop="description" content="阿东的博客">
-    <meta name="keywords" content=",Docker,Hexo">
+    <meta name="keywords" content=",Docker,Linux">
 
     <!-- Import lsloader -->
     <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(window.oldVersion){var remove=window.oldVersion.reduce(function(p,c){return p||data.indexOf("/*"+c+"*/")!==-1},false);if(remove){lsloader.removeLS(key)}}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload,isJs){if(typeof cssonload==="boolean"){isJs=cssonload;cssonload=undefined}isJs=isJs||false;cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}code=code.split(versionString)[1];if(isJs){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload,isJs)}};lsloader.requestResource=function(name,path,cssonload,isJs){var that=this;if(isJs){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else{this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
@@ -226,18 +226,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://106.75.80.200">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Hexo + Docker 搭建博客 | 阿东哟">
+    <meta property="og:title" content="Docker笔记总结 | 阿东哟">
     <meta property="og:image" content="http://106.75.80.200/img/snow.png" />
     <meta property="og:description" content="阿东的博客">
-    <meta property="og:article:tag" content="Docker"> <meta property="og:article:tag" content="Hexo"> 
+    <meta property="og:article:tag" content="Docker"> <meta property="og:article:tag" content="Linux"> 
 
     
-        <meta property="article:published_time" content="Fri Feb 28 2020 17:48:27 GMT+0800" />
-        <meta property="article:modified_time" content="Sat Feb 29 2020 23:06:24 GMT+0800" />
+        <meta property="article:published_time" content="Sun Mar 15 2020 14:11:39 GMT+0800" />
+        <meta property="article:modified_time" content="Mon Mar 16 2020 17:28:11 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="Hexo + Docker 搭建博客 | 阿东哟">
+    <meta name="twitter:title" content="Docker笔记总结 | 阿东哟">
     <meta name="twitter:description" content="阿东的博客">
     <meta name="twitter:image" content="http://106.75.80.200/img/snow.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -245,7 +245,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://106.75.80.200/2020/02/28/first/index.html" />
+        <link rel="canonical" href="http://106.75.80.200/2020/03/15/seven/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -257,10 +257,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "http://106.75.80.200/2020/02/28/first/index.html",
-    "headline": "Hexo + Docker 搭建博客",
-    "datePublished": "Fri Feb 28 2020 17:48:27 GMT+0800",
-    "dateModified": "Sat Feb 29 2020 23:06:24 GMT+0800",
+    "mainEntityOfPage": "http://106.75.80.200/2020/03/15/seven/index.html",
+    "headline": "Docker笔记总结",
+    "datePublished": "Sun Mar 15 2020 14:11:39 GMT+0800",
+    "dateModified": "Mon Mar 16 2020 17:28:11 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "阿东哟",
@@ -278,7 +278,7 @@
             "url": "/img/snow.png"
         }
     },
-    "keywords": ",Docker,Hexo",
+    "keywords": ",Docker,Linux",
     "description": "阿东的博客",
 }
 </script>
@@ -344,7 +344,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前提"><span class="post-toc-number">1.</span> <span class="post-toc-text">前提</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Linux服务器"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Linux服务器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装好hexo"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">安装好hexo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装好docker"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">安装好docker</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#关键"><span class="post-toc-number">2.</span> <span class="post-toc-text">关键</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#共享文件"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">共享文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#扩展–更换主题"><span class="post-toc-number">3.</span> <span class="post-toc-text">扩展–更换主题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#了解主题目录结构"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">了解主题目录结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#下载安装"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">下载安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">配置</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">4.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Docker安装部署"><span class="post-toc-number">1.</span> <span class="post-toc-text">Docker安装部署</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CentOS"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">CentOS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他安装方式-推荐"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">其他安装方式(推荐)</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Docker命令"><span class="post-toc-number">2.</span> <span class="post-toc-text">Docker命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Docker服务相关命令"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Docker服务相关命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Docker镜像相关命令"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Docker镜像相关命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Docker容器相关的命令"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Docker容器相关的命令</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Docker容器的数据卷"><span class="post-toc-number">3.</span> <span class="post-toc-text">Docker容器的数据卷</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据卷概念和作用"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">数据卷概念和作用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#思考"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">思考</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据卷"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">数据卷</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据卷的作用"><span class="post-toc-number">3.1.3.</span> <span class="post-toc-text">数据卷的作用</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置数据卷"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">配置数据卷</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据卷容器"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">数据卷容器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置数据卷容器"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">配置数据卷容器</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MySQL部署"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">MySQL部署</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Tomcat部署"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">Tomcat部署</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Nginx部署"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">Nginx部署</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Redis部署"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">Redis部署</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Dockerfile"><span class="post-toc-number">4.</span> <span class="post-toc-text">Dockerfile</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Docker镜像原理"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">Docker镜像原理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#思考-1"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">思考</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Linux文件系统"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">Linux文件系统</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Docker镜像"><span class="post-toc-number">4.1.3.</span> <span class="post-toc-text">Docker镜像</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#镜像制作"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">镜像制作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Dockerfile概念及作用"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">Dockerfile概念及作用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#概念"><span class="post-toc-number">4.3.1.</span> <span class="post-toc-text">概念</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Dockerfile关键字"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">Dockerfile关键字</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#制作自定义centos镜像"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">制作自定义centos镜像</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自定义需求"><span class="post-toc-number">4.5.1.</span> <span class="post-toc-text">自定义需求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#操作"><span class="post-toc-number">4.5.2.</span> <span class="post-toc-text">操作</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">5.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
     </ul>
     
 
@@ -376,7 +376,7 @@
         
     
             <p class="article-headline-p">
-                Hexo + Docker 搭建博客
+                Docker笔记总结
             </p>
         </div>
 
@@ -395,7 +395,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>阿东哟</strong>
-        <span>2月 28, 2020</span>
+        <span>3月 15, 2020</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -419,7 +419,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Hexo/" rel="tag">Hexo</a>
+        <a class="post_tag-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Linux/" rel="tag">Linux</a>
     </ul>
     
 
@@ -435,7 +435,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Hexo + Docker 搭建博客&url=http://106.75.80.200/2020/02/28/first/index.html&pic=http://106.75.80.200/img/snow.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Docker笔记总结&url=http://106.75.80.200/2020/03/15/seven/index.html&pic=http://106.75.80.200/img/snow.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -456,7 +456,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=阿东哟&title=Hexo + Docker 搭建博客&summary=阿东的博客&pics=http://106.75.80.200/img/snow.png&url=http://106.75.80.200/2020/02/28/first/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=阿东哟&title=Docker笔记总结&summary=阿东的博客&pics=http://106.75.80.200/img/snow.png&url=http://106.75.80.200/2020/03/15/seven/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -474,79 +474,423 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h1 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h1><h2 id="Linux服务器"><a href="#Linux服务器" class="headerlink" title="Linux服务器"></a>Linux服务器</h2><blockquote>
-<p>保证自己服务器上的端口对外开放，即设置相应的防火墙规则</p>
-</blockquote>
-<h2 id="安装好hexo"><a href="#安装好hexo" class="headerlink" title="安装好hexo"></a>安装好hexo</h2><blockquote>
-<p>安装：<code>npm install hexo-cli -g</code></p>
-</blockquote>
+        <h1 id="Docker安装部署"><a href="#Docker安装部署" class="headerlink" title="Docker安装部署"></a>Docker安装部署</h1><h2 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h2><ul>
+<li><p>yum 包更新到最新（花的时间比较多）</p>
+<pre><code>yum update</code></pre></li>
+<li><p>安装需要的软件包，yum-util 提供的yum-config-manager功能，另外两个是devicemapper驱动依赖的</p>
+<pre><code>yum install -y yum-utils device-mapper-persistent-data lvm2</code></pre></li>
+<li><p>设置yum源</p>
+<pre><code>yum-confi-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</code></pre></li>
+<li><p>安装docker，出现输入的页面都按 y</p>
+<pre><code>yum install -y docker-ce</code></pre></li>
+<li><p>查看docker版本，验证是否安装成功</p>
+<pre><code>docker -v</code></pre></li>
+</ul>
+<h3 id="其他安装方式-推荐"><a href="#其他安装方式-推荐" class="headerlink" title="其他安装方式(推荐)"></a>其他安装方式(推荐)</h3><p>教程链接：<a href="https://www.jianshu.com/p/1e5c86accacb" target="_blank" rel="noopener">Here!</a></p>
+<h1 id="Docker命令"><a href="#Docker命令" class="headerlink" title="Docker命令"></a>Docker命令</h1><h2 id="Docker服务相关命令"><a href="#Docker服务相关命令" class="headerlink" title="Docker服务相关命令"></a>Docker服务相关命令</h2><ul>
+<li><p>启动docker服务</p>
+<pre><code>systemctl start docker
+systemctl start docker</code></pre></li>
+<li><p>停止docker服务</p>
+<pre><code>systemctl stop docker</code></pre></li>
+<li><p>重启docker服务</p>
+<pre><code>systemctl restart docker</code></pre></li>
+<li><p>查看docker服务状态</p>
+<pre><code>systemctl status docker</code></pre></li>
+<li><p>设置开机启动docker服务</p>
+<pre><code>systemstl enable docker</code></pre></li>
+</ul>
+<h2 id="Docker镜像相关命令"><a href="#Docker镜像相关命令" class="headerlink" title="Docker镜像相关命令"></a>Docker镜像相关命令</h2><ul>
+<li><p>查看镜像：查看本地所有的镜像</p>
+<pre><code>docker images
+docker images -q # 查看所有镜像id</code></pre></li>
+<li><p>搜索镜像：从网络中查找需要的镜像</p>
+<pre><code>docker search 镜像名称</code></pre></li>
+<li><p>拉取镜像：从docker仓库下载镜像到本地，镜像名称格式为 名称:版本号，如果版本号不指定则是<strong>最新版本</strong>。如果不知道镜像版本，可以去<a href="http://hub.docker.com" target="_blank" rel="noopener">docker hub</a> 搜索对应镜像查看</p>
+<pre><code>docker pull 镜像名称</code></pre></li>
+<li><p>删除镜像</p>
+<pre><code>docker rmi 镜像id
+docker rmi `docker images -q` # 删除所有本地镜像</code></pre></li>
+</ul>
+<h2 id="Docker容器相关的命令"><a href="#Docker容器相关的命令" class="headerlink" title="Docker容器相关的命令"></a>Docker容器相关的命令</h2><ul>
+<li><p>查看容器</p>
+<pre><code>docker ps # 查看正在运行的容器
+docker ps -a # 查看所有容器</code></pre></li>
+<li><p>创建并启动容器</p>
+<pre><code>docker run 参数</code></pre><ul>
+<li>参数说明：<ul>
+<li>-i：保持容器运行。通常与-t同时使用。加入it这两个参数后，容器创建后自动进入容器中，退出容器后，容器自动关闭。</li>
+<li>-t：为容器重新分配一个伪输入终端，通常与-i同时使用。</li>
+<li>-d:以守护（后台）模式运行容器。创建一个容器在后台运行，需要使用<code>docker exec</code>进入容器。退出时，容器不会关闭。</li>
+<li>-it：创建的容器一般称为<strong>交互式容器</strong>。</li>
+<li>-id：创建的容器一般称为<strong>守护式容器</strong>。</li>
+<li>–name：为创建的容器命名。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>进入容器</p>
+<pre><code>docker exec 参数 # 退出容器，容器不会关闭</code></pre></li>
+<li><p>启动容器</p>
+<pre><code>docker start 容器名称</code></pre></li>
+<li><p>停止容器</p>
+<pre><code>docker stop 容器名称</code></pre></li>
+<li><p>删除容器：如果容器是运行状态则删除失败，需要停止容器才能删除</p>
+<pre><code>docker rm 容器名称</code></pre></li>
+<li><p>查看容器信息</p>
+<pre><code>docker inspect 容器名称</code></pre></li>
+</ul>
+<h1 id="Docker容器的数据卷"><a href="#Docker容器的数据卷" class="headerlink" title="Docker容器的数据卷"></a>Docker容器的数据卷</h1><h2 id="数据卷概念和作用"><a href="#数据卷概念和作用" class="headerlink" title="数据卷概念和作用"></a>数据卷概念和作用</h2><h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><ul>
+<li>Docker容器删除后，在容器中产生的数据也会随之销毁吗？<ul>
+<li>会。</li>
+</ul>
+</li>
+<li>Docker容器和外部机器可以直接交换文件吗？<ul>
+<li>不可以。</li>
+</ul>
+</li>
+<li>容器之间想要进行数据交互？<ul>
+<li>不可以。</li>
+</ul>
+</li>
+</ul>
 <blockquote>
-<p>初始化搭建：<code>npm init myBlog</code>,myBlog 是自己设置的名字，即为生成的文件夹</p>
+<p><em>那咋办嘛？这就要用到数据卷了</em></p>
 </blockquote>
-<blockquote>
-<p>进入文件夹，添加依赖：<code>cd myBlog</code> <code>npm install</code></p>
-</blockquote>
-<blockquote>
-<p>完成了hexo的安装和初始化，为了能进行本地预览<br>安装hexo-server：<code>sudo npm install hexo-server</code></p>
-</blockquote>
-<blockquote>
-<p>生成静态页面并打开本地服务：<code>hexo generate(或hexo g)</code><code>hexo server(或hexo s)</code></p>
-</blockquote>
-<blockquote>
-<p>根据提示，进入<code><a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></code> </p>
-</blockquote>
-<h2 id="安装好docker"><a href="#安装好docker" class="headerlink" title="安装好docker"></a>安装好docker</h2><blockquote>
-<p>首先需要在自己的Linux服务器上面安装好docker，详细安装过程请查看<strong><a href="https://www.runoob.com/docker/ubuntu-docker-install.html" target="_blank" rel="noopener">&gt;&gt;&gt;</a></strong></p>
-</blockquote>
-<blockquote>
-<p>搭建服务器，我以apache示范，其他的请自行百度</p>
-</blockquote>
-<blockquote>
-<p>拉取镜像：<code>docker pull httpd</code></p>
-</blockquote>
-<h1 id="关键"><a href="#关键" class="headerlink" title="关键"></a>关键</h1><h2 id="共享文件"><a href="#共享文件" class="headerlink" title="共享文件"></a>共享文件</h2><blockquote>
-<p>由于执行<code>hexo generate(或hexo g)</code>后，会生成一个放到一个<strong>public</strong>文件中，所以需要把该文件夹与docker容器内的首页文件夹实现<strong>共享</strong>，这样我们修改<strong>public</strong>内文件(即执行 <code>hexo g</code>)后，能够实时更新</p>
-</blockquote>
-<blockquote>
-<p>执行：<code>docker run --name apache -v /home/myBlog/public/:/usr/local/apache2/htdocs/  -p 80:80 -d httpd</code></p>
-</blockquote>
-<blockquote>
-<p>浏览器中输入服务器的ip地址或者域名，即可查看。</p>
-</blockquote>
-<h1 id="扩展–更换主题"><a href="#扩展–更换主题" class="headerlink" title="扩展–更换主题"></a>扩展–更换主题</h1><h2 id="了解主题目录结构"><a href="#了解主题目录结构" class="headerlink" title="了解主题目录结构"></a>了解主题目录结构</h2><blockquote>
-<p>myBlog  //博客根目录</p>
-<blockquote>
-<p>_config.yml  //博客配置文件<br>themes  //主题目录</p>
-<blockquote>
-<p>landscape  //默认主题</p>
-<blockquote>
-<p>_config.yml  //对应主题的配置文件</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><blockquote>
-<p>以 <strong><a href="https://github.com/bolnh/hexo-theme-material" target="_blank" rel="noopener">hexo-theme-material</a></strong>举例</p>
-</blockquote>
-<pre><code>cd themes
-git clone https://github.com/bolnh/hexo-theme-material.git material</code></pre><p>或</p>
-<pre><code>npm install hexo-material
-cd themes
-cp -r node_modules/hexo-material material</code></pre><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><blockquote>
-<p>进入<code>myBlog/themes/material/</code>，看该目录下的是否有 <code>_config.yml</code> ，没有就把 <code>_config.template.yml</code>文件copy一份，重命名为_config.yml</p>
-</blockquote>
-<blockquote>
-<p>再进入<code>myBlog/</code>，打开<code>_config.yml</code> ，把其中的<code>themes</code> 字段后的值设置为主题文件名<br><em>比如：我上面设置的主题文件明是 material，那么就需要设置为material</em></p>
-</blockquote>
-<pre><code># Extensions
-## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
-theme: &lt;主题文件夹的名称&gt;</code></pre><blockquote>
-<p>然后直接<code>hexo g</code>即可</p>
-</blockquote>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><blockquote>
-<p><a href="https://blog.csdn.net/u010725842/article/details/80672739" target="_blank" rel="noopener">Linux下使用Hexo搭建github博客</a><br><a href="https://www.simon96.online/2018/10/12/hexo-tutorial/" target="_blank" rel="noopener">最全Hexo博客搭建+主题优化+插件配置+常用操作+错误分析</a></p>
-</blockquote>
+<h3 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h3><ul>
+<li>数据卷是宿主机中的一个<strong>目录或文件</strong></li>
+<li>当容器目录和数据卷目录绑定后，对方的修改会立即同步</li>
+<li>一个数据卷可以被<strong>多个容器同时挂载</strong></li>
+<li>一个容器也可以被挂载<strong>多个数据卷</strong></li>
+</ul>
+<h3 id="数据卷的作用"><a href="#数据卷的作用" class="headerlink" title="数据卷的作用"></a>数据卷的作用</h3><ul>
+<li>容器数据持久化</li>
+<li>外部机器和容器间接通信</li>
+<li>容器之间数据交换</li>
+</ul>
+<h2 id="配置数据卷"><a href="#配置数据卷" class="headerlink" title="配置数据卷"></a>配置数据卷</h2><ul>
+<li><p>创建启动容器时，使用<code>-v</code>参数设置数据卷</p>
+<pre><code>docker run ...-v 宿主机目录(文件):容器内目录(文件)...</code></pre></li>
+<li><p>注意事项：</p>
+<ol>
+<li>目录必须是<strong>绝对路径</strong></li>
+<li>如果目录不存在，会<strong>自动创建</strong></li>
+<li>可以挂载<strong>多个</strong>数据卷</li>
+</ol>
+</li>
+</ul>
+<h2 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h2><h3 id="配置数据卷容器"><a href="#配置数据卷容器" class="headerlink" title="配置数据卷容器"></a>配置数据卷容器</h3><ul>
+<li><p>创建启动c3数据卷容器，使用<code>-v</code>参数设置数据卷</p>
+<pre><code>docker run -it --name-=c3 -v /volume centos:7 /bin/bash</code></pre></li>
+<li><p>创建启动c1 c2数据卷容器，使用<code>-volumes-from</code>参数设置数据卷</p>
+<pre><code>docker run -it --name-=c1 -volumes-from c3 centos:7 /bin/bash
+docker run -it --name-=c2 -volumes-from c3 centos:7 /bin/bash</code></pre></li>
+</ul>
+<p>#Docker应用部署</p>
+<h2 id="MySQL部署"><a href="#MySQL部署" class="headerlink" title="MySQL部署"></a>MySQL部署</h2><ul>
+<li><p>搜索MySQL镜像</p>
+<pre><code>docker search mysql</code></pre></li>
+<li><p>拉取MySQL镜像</p>
+<pre><code>docker pull mysql:5.6</code></pre></li>
+<li><p>创建容器，设置端口映射、目录映射</p>
+<pre><code># 在/root目录下创建mysql目录用于存储mysql数据信息
+mkdir ~/mysql
+cd ~/mysql</code></pre><hr>
+<pre><code>docker run -id \
+--name=c_mysql \
+-p 3307:3306 \
+-v $PWD/conf:/etc/mysql/confi.d \
+-v $PWD/logs:/logs \
+-v $PWD/data:/var/lib/mysql \
+-e MYSQL_ROOT_PASSWORD=123456 \
+mysql:5.6</code></pre><ul>
+<li>参数说明：<ul>
+<li>-p 3307:3306：将容器的3306端口映射到宿主机的3307端口。</li>
+<li>-v $PWD/conf:/etc/mysql/confi.d：将主机当前目录下的conf/my.cnf挂载到容器的/etc/mysql/my.cnf。配置目录</li>
+<li>-v $PWD/logs:/logs：将主机当前目录下的logs目录挂载到容器的/logs。日志目录</li>
+<li>-v $PWD/data:/var/lib/mysql：将主机当前目录下的data目录挂载到容器的/var/lib/mysql。数据目录</li>
+<li>-e MYSQL_ROOT_PASSWORD=123456：初始化root用户的密码。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Tomcat部署"><a href="#Tomcat部署" class="headerlink" title="Tomcat部署"></a>Tomcat部署</h2><ul>
+<li><p>搜索Tomcat镜像</p>
+<pre><code>docker search tomcat</code></pre></li>
+<li><p>拉取Tomcat镜像</p>
+<pre><code>docker pull tomcat</code></pre></li>
+<li><p>创建容器，设置端口映射、目录映射</p>
+<pre><code># 在/root目录下创建tomcat目录用于存储tomcat数据信息
+mkdir ~/tomcat
+cd ~/tomcat</code></pre><hr>
+<pre><code>docker run -id \
+--name=c_tomcat \
+-p 8080:8080 \
+-v $PWD:/usr/local/tomcat/webapps \
+tomcat</code></pre><ul>
+<li>参数说明：<ul>
+<li>-p 8000:8080：将容器的8080端口映射到宿主机的8000端口。</li>
+<li>-v $PWD:/usr/local/tomcat/webapps：将主机当前目录挂载到容器的/usr/local/tomcat/webapps。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Nginx部署"><a href="#Nginx部署" class="headerlink" title="Nginx部署"></a>Nginx部署</h2><ul>
+<li><p>搜索Nginx镜像</p>
+<pre><code>docker search nginx</code></pre></li>
+<li><p>拉取Nginx镜像</p>
+<pre><code>docker pull nginx</code></pre></li>
+<li><p>创建容器，设置端口映射、目录映射</p>
+<pre><code># 在/root目录下创建nginx目录用于存储nginx数据信息
+mkdir ~/nginx
+cd ~/nginx
+mkdir conf
+cd conf
+# 在~/nginx/conf/下创建nginx.conf文件，粘贴下面内容
+vim nginx.conf</code></pre><hr>
+<pre><code>user  nginx;
+worker_processes  1;
+
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;
+                      &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;
+                      &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    include /etc/nginx/conf.d/*.conf;
+}</code></pre><hr>
+<pre><code>docker run -id \
+--name=c_nginx \
+-p 81:80 \
+-v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf \
+-v $PWD/logs:/var/log/nginx \
+-v $PWD/html:/usr/share/nginx/html \
+nginx</code></pre><ul>
+<li>参数说明：<ul>
+<li>-p 81:80：将容器的80端口映射到宿主机的81端口。</li>
+<li>v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf：将主机当前目录下的/conf/nginx.conf挂载到容器的/etc/nginx/nginx.conf。配置目录</li>
+<li>-v $PWD/logs:/var/log/nginx：将主机当前目录下的logs目录挂载到容器的/var/log/nginx。日志目录</li>
+<li>-v $PWD/html:/usr/share/nginx/html：将主机当前目录下的/html挂载到容器的/usr/share/nginx/html。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Redis部署"><a href="#Redis部署" class="headerlink" title="Redis部署"></a>Redis部署</h2><ul>
+<li><p>搜索Redis镜像</p>
+<pre><code>docker search redis</code></pre></li>
+<li><p>拉取Redis镜像</p>
+<pre><code>docker pull redis:5.0</code></pre></li>
+<li><p>创建容器，设置端口映射、目录映射</p>
+<pre><code>docker run -id --name=c_redis -p 6379:6379 redis:5.0</code></pre><ul>
+<li>参数说明：<ul>
+<li>-p 6379:6379：将容器的6379端口映射到宿主机的6379端口。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>使用外部机器连接redis</p>
+<pre><code>./redis-cli.exe -h &lt;your ipAddress&gt; -p 6379    </code></pre></li>
+</ul>
+<h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><h2 id="Docker镜像原理"><a href="#Docker镜像原理" class="headerlink" title="Docker镜像原理"></a>Docker镜像原理</h2><h3 id="思考-1"><a href="#思考-1" class="headerlink" title="思考"></a>思考</h3><ul>
+<li>Docker镜像本质是什么？<ul>
+<li>是一个分层的文件系统</li>
+</ul>
+</li>
+<li>Docker中一个centos镜像为什么只有200MB，而一个centos操作系统的<code>iso</code>文件要几个GB？<ul>
+<li>Centos的<code>iso</code>镜像文件包含<code>bootfs</code>和<code>rootfs</code>，而docker的centos镜像<strong>复用</strong>操作系统的<code>bootfs</code>，只包含<code>rootfs</code>和其他镜像层</li>
+</ul>
+</li>
+<li>Docker中一个tomcat镜像为什么有500MB，而一个tomcat安装包只有70多MB？<ul>
+<li>由于docker中镜像是分层的，tomcat虽然只有70多MB，但它需要依赖于<strong>父镜像</strong>和<strong>子镜像</strong>，所有整个对外暴露的tomcat镜像大小有500多MB</li>
+</ul>
+</li>
+</ul>
+<h3 id="Linux文件系统"><a href="#Linux文件系统" class="headerlink" title="Linux文件系统"></a>Linux文件系统</h3><ul>
+<li>bootfs：包含<code>bootloader</code>（引导加载系统）和<code>kernel</code>（内核）</li>
+<li>rootfs：root文件系统，包含的就是典型的Linux系统中的<code>/dev</code>，<code>/proc</code>，<code>/bin</code>，<code>/etc</code>等标准目录和文件</li>
+<li>不用的Linux发行版，<code>bootfs</code>基本一样，而<code>rootfs</code>不同，如Ubuntu，centos等</li>
+</ul>
+<p><img src="/2020/03/15/seven/layer1.png" alt></p>
+<h3 id="Docker镜像"><a href="#Docker镜像" class="headerlink" title="Docker镜像"></a>Docker镜像</h3><ul>
+<li>Docker镜像是由特殊的文件系统叠加而成</li>
+<li>最底端是<code>bootfs</code>,并使用宿主机的<code>bootfs</code></li>
+<li>第二层是root文件系统<code>rootfs</code>,称为<code>base image</code></li>
+<li>然后再往上可以叠加其他的镜像文件</li>
+<li><strong><em>统一文件系统(Union File System)</em></strong>技术能够将不同的层整合成一个文件系统,为这些层提供了一个统一的视角，这样就隐藏了多层的存在，在用户的角度看来,只存在一个文件系统。</li>
+<li>一个镜像可以放在另一个镜像的上面。位于下面的镜像称为<strong><em>父镜像</em></strong>，最底部的镜像成为<strong><em>基础镜像</em></strong>。</li>
+<li>当从一个镜像启动容器时，Docker会从最顶层加载一个<strong>读写文件系统</strong>作为容器</li>
+</ul>
+<p><img src="/2020/03/15/seven/layer2.png" alt></p>
+<h2 id="镜像制作"><a href="#镜像制作" class="headerlink" title="镜像制作"></a>镜像制作</h2><ul>
+<li><p>容器转为镜像</p>
+<pre><code>docker commit 容器id 镜像名称:版本号  # 将容器转换为镜像文件
+docker save -o 压缩文件名称 镜像名称:版本号  # 将镜像文件打包成压缩文件，之后就能对压缩文件传送了
+docker load -i 压缩文件名称  # 将压缩文件解压称为镜像文件</code></pre></li>
+<li><p>Dockerfile</p>
+<ul>
+<li><em>看下面内容</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="Dockerfile概念及作用"><a href="#Dockerfile概念及作用" class="headerlink" title="Dockerfile概念及作用"></a>Dockerfile概念及作用</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li>Dockerfile是一个文本文件</li>
+<li>包含了一条条的指令</li>
+<li>每一条指令构建一层，基于基础镜像，最终构建出一个新的镜像</li>
+<li>对于开发人员：可以为开发团队提供一个完全一致的开发环境</li>
+<li>对于测试人员：可以直接拿开发时所构建的镜像或者通过Dockerfile文件构建一个新的镜像开始工作了</li>
+<li>对于运维人员：在部署时，可以实现应用的无缝移植</li>
+</ul>
+<p><img src="/2020/03/15/seven/dockerfile1.png" alt></p>
+<h2 id="Dockerfile关键字"><a href="#Dockerfile关键字" class="headerlink" title="Dockerfile关键字"></a>Dockerfile关键字</h2><p><em>列举一些常用的</em></p>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FROM</td>
+<td>指定父镜像</td>
+<td>指定dockerfile基于那个image构建</td>
+</tr>
+<tr>
+<td>MAINTAINER</td>
+<td>作者信息</td>
+<td>用来标明这个dockerfile谁写的</td>
+</tr>
+<tr>
+<td>LABEL</td>
+<td>标签</td>
+<td>用来标明dockerfile的标签 可以使用Label代替Maintainer 最终都是在docker image基本信息中可以查看</td>
+</tr>
+<tr>
+<td>RUN</td>
+<td>执行命令</td>
+<td>执行一段命令 默认是/bin/sh 格式: RUN command 或者 RUN [“command” , “param1”,”param2”]</td>
+</tr>
+<tr>
+<td>CMD</td>
+<td>容器启动命令</td>
+<td>提供启动容器时候的默认命令 和ENTRYPOINT配合使用.格式 CMD command param1 param2 或者 CMD [“command” , “param1”,”param2”]</td>
+</tr>
+<tr>
+<td>ENTRYPOINT</td>
+<td>入口</td>
+<td>一般在制作一些执行就关闭的容器中会使用</td>
+</tr>
+<tr>
+<td>COPY</td>
+<td>复制文件</td>
+<td>build的时候复制文件到image中</td>
+</tr>
+<tr>
+<td>ADD</td>
+<td>添加文件</td>
+<td>build的时候添加文件到image中 不仅仅局限于当前build上下文 可以来源于远程服务</td>
+</tr>
+<tr>
+<td>ENV</td>
+<td>环境变量</td>
+<td>指定build时候的环境变量 可以在启动的容器的时候 通过-e覆盖 格式ENV name=value</td>
+</tr>
+<tr>
+<td>ARG</td>
+<td>构建参数</td>
+<td>构建参数 只在构建的时候使用的参数 如果有ENV 那么ENV的相同名字的值始终覆盖arg的参数</td>
+</tr>
+<tr>
+<td>VOLUME</td>
+<td>定义外部可以挂载的数据卷</td>
+<td>指定build的image那些目录可以启动的时候挂载到文件系统中 启动容器的时候使用 -v 绑定 格式 VOLUME [“目录”]</td>
+</tr>
+<tr>
+<td>EXPOSE</td>
+<td>暴露端口</td>
+<td>定义容器运行的时候监听的端口 启动容器的使用-p来绑定暴露端口 格式: EXPOSE 8080 或者 EXPOSE 8080/udp</td>
+</tr>
+<tr>
+<td>WORKDIR</td>
+<td>工作目录</td>
+<td>指定容器内部的工作目录 如果没有创建则自动创建 如果指定/ 使用的是绝对地址 如果不是/开头那么是在上一条workdir的路径的相对路径</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>指定执行用户</td>
+<td>指定build或者启动的时候 用户 在RUN CMD ENTRYPONT执行的时候的用户</td>
+</tr>
+<tr>
+<td>HEALTHCHECK</td>
+<td>健康检查</td>
+<td>指定监测当前容器的健康监测的命令 基本上没用 因为很多时候 应用本身有健康监测机制</td>
+</tr>
+<tr>
+<td>ONBUILD</td>
+<td>触发器</td>
+<td>当存在ONBUILD关键字的镜像作为基础镜像的时候 当执行FROM完成之后 会执行 ONBUILD的命令 但是不影响当前镜像 用处也不怎么大</td>
+</tr>
+<tr>
+<td>STOPSIGNAL</td>
+<td>发送信号量到宿主机</td>
+<td>该STOPSIGNAL指令设置将发送到容器的系统调用信号以退出。</td>
+</tr>
+<tr>
+<td>SHELL</td>
+<td>指定执行脚本的shell</td>
+<td>指定RUN CMD ENTRYPOINT 执行命令的时候 使用的shell</td>
+</tr>
+</tbody></table>
+<h2 id="制作自定义centos镜像"><a href="#制作自定义centos镜像" class="headerlink" title="制作自定义centos镜像"></a>制作自定义centos镜像</h2><h3 id="自定义需求"><a href="#自定义需求" class="headerlink" title="自定义需求"></a>自定义需求</h3><ul>
+<li><p>默认登录路径为<code>/usr</code></p>
+</li>
+<li><p>可以使用vim</p>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3></li>
+<li><p>创建编辑dockerfile文件</p>
+<pre><code>mkdir /root/dockerfile
+cd dockerfile
+vim centos_dockerfile</code></pre><ul>
+<li>定义父镜像：<code>FROM centos:7</code></li>
+<li>定义作者信息：<code>MAINTAINER adongyo &lt;adongyo@it.cn&gt;</code></li>
+<li>执行安装vim命令：<code>RUN yum install -y vim</code></li>
+<li>定义默认的工作目录：<code>WORKDIR /usr</code></li>
+<li>定义容器启动执行的命令：<code>CMD /bin/bash</code></li>
+</ul>
+</li>
+<li><p>执行命令</p>
+<pre><code>docker build -f ./centos_dockerfile -t myCentos:1 .</code></pre><ul>
+<li>参数说明：    <ul>
+<li>-f： 指定dockerfile文件</li>
+<li>-t： 设置生成的新的镜像的名称</li>
+<li><strong>.</strong>： 别漏了后面还有一个’.’<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="https://www.bilibili.com/video/av89009239" target="_blank" rel="noopener">b站转载黑马程序员</a></p>
+</li>
+</ul>
 
         
     
@@ -567,19 +911,19 @@ theme: &lt;主题文件夹的名称&gt;</code></pre><blockquote>
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2020/02/28/two/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2020/03/04/six/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 

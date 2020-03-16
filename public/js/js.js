@@ -27,7 +27,7 @@ $(document).ready(function() {
 			location.href = target;
 		});
 	});
-	
+
 	// Auto fill visitor-url "http://"
 	$("#visitor-url").focus(function() {
 		this.placeholder = "http://";
@@ -2537,9 +2537,7 @@ $(document).ready(function() {
 			'click',
 			function() {
 				var child;
-
 				child = this.childNodes[0].classList;
-
 				if (child.contains('MD-burger-arrow')) {
 					child.remove('MD-burger-arrow');
 					child.add('MD-burger-line');
@@ -2547,7 +2545,6 @@ $(document).ready(function() {
 					child.remove('MD-burger-line');
 					child.add('MD-burger-arrow');
 				}
-
 			});
 
 })();

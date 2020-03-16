@@ -2586,7 +2586,6 @@ a {
 	animation-name: MD-burger-icon-arrow
 }
 
-.MD-burger-arrow,
 .MD-burger-arrow:before {
 	-webkit-animation-fill-mode: forwards;
 	animation-fill-mode: forwards

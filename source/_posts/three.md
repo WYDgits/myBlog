@@ -1,7 +1,7 @@
 ---
 title: FTP、SFTP、SCP的区别
 date: 2020-02-28 21:03:58
-categories: 文件传输
+categories: NetWork
 tags: 
   - FTP
   - SFTP
