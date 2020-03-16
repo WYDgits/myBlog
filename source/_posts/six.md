@@ -4,8 +4,7 @@ date: 2020-03-04 14:32:21
 categories: 
   - 其他
 tags:
-  - Hexo
-  - others
+  - 其他
 ---
 
 # 作业
