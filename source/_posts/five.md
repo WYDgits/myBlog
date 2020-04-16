@@ -16,7 +16,7 @@ tags:
 
 > - 使用[插件](https://github.com/xcodebuild/hexo-asset-image)：
 >
-	<code>npm install hexo-asset-image --save</code>
+		npm install hexo-asset-image --save
 
 **但是！插件好像有bug，我的图片路径一直时错误的，而显示不出来！**
 # 解决

@@ -1,13 +1,200 @@
 ---
 title: 计算机图形学作业
-date: 2020-03-04 14:32:21
+date: 2020-03-27 23:44:21
 categories: 
   - 其他
 tags:
   - 其他
 ---
+# 第六章作业
+- 6-1 请使用OpenGL、GLU和GLUT编写一个显示线框立方体的程序。其中立方体的半径为1.5单位，并首先绕(0, 0, 0)~(1, 1, 0)旋转30度，然后远移6.5单位；观察体规定为：视场角=30度，宽高比=1，近=1，远=100；程序窗口的大小为(200, 200)，标题为“线框立方体”。
 
-# 作业
+		#include <gl/glut.h>
+		void init()
+		{
+		    glutInitDisplayMode(GLUT_SINGLE|GLUT_RGBA);
+		    glutInitWindowSize(200,200);
+		    glutCreateWindow("线框立方体");
+		}
+		void Paint()
+		{
+		    glClear(GL_COLOR_BUFFER_BIT);
+		    glLoadIdentity();
+		    gluPerspective(30, 1, 1, 100);
+		    glTranslated(0, 0, -6.5);
+		    glRotated(30, 1, 1, 0);
+		    glutWireCube(1.5);
+		    glFlush();
+		}
+		int main(int argc, char *argv[])
+		{
+		    glutInit(&argc, argv);
+		    init();
+		    glutDisplayFunc(Paint);
+		    glutMainLoop();
+		}
+![](2-1.png)
+
+- 6-2 请使用OpenGL和GLUT编写一个显示线框球体的简单图形程序。其中球体的半径为0.8，经线数为24，纬线数为12，并绕 x 轴旋转30度，程序窗口的大小为(200, 200)，标题为“线框球”。
+
+		#include <gl/glut.h>
+		void init(){
+		    glutInitDisplayMode(GLUT_SINGLE|GLUT_RGBA);
+		    glutInitWindowSize(200,200);
+		    glutCreateWindow("线框球");
+		}
+		void Paint(){
+		    glClear(GL_COLOR_BUFFER_BIT);
+		    glLoadIdentity();
+		    glRotated(30, 1, 0, 0);
+		    glutWireSphere(0.8,24,12);
+		    glFlush();
+		}
+		int main(int argc, char *argv[]){
+		    glutInit(&argc, argv);
+		    init();
+		    glutDisplayFunc(Paint);
+		    glutMainLoop();
+		}
+![](2-2.png)
+
+- 6-3 请使用OpenGL和GLUT编写一个显示线框椭球体的简单图形程序。其中椭球体的两极方向为上下方向，左右方向的半径为0.98，上下方向的半径为0.49，前后方向的半径为0.6，经线数为48，纬线数为24，使用正投影，裁剪窗口为(-1,-0.5)~(1, 0.5)，程序窗口的大小为(400, 200)，标题为“线框椭球”。
+
+		#include <gl/glut.h>
+		void init()
+		{
+		    glutInitDisplayMode(GLUT_SINGLE|GLUT_RGBA);
+		    glutInitWindowSize(400,200);
+		    glutCreateWindow("线框椭球");
+		}
+		void Paint()
+		{
+		    glClear(GL_COLOR_BUFFER_BIT);
+		    glLoadIdentity();
+		    gluOrtho2D(-1, 1, -0.5, 0.5);
+		    glScaled(9.8,4.9,6);
+		    glutWireSphere(0.1,48,25);
+		    glFlush();
+		}
+		int main(int argc, char *argv[])
+		{
+		    glutInit(&argc, argv);
+		    init();
+		    glutDisplayFunc(Paint);
+		    glutMainLoop();
+		}
+![](2-3.png)
+- 6-4 请使用OpenGL、GLU和GLUT编写一个三维犹他茶壶程序。其中茶壶的半径为1单位，并远移6.5单位；观察体规定为：视场角=30度，宽高比=1，近=1，远=100；程序窗口的大小为(200, 200)，标题为“旋转的尤他茶壶”。茶壶绕z轴不断旋转，旋转的时间间隔为25毫秒，角度间隔为2度。注意旋转角度必须限定在0～360度以内。
+
+		#include <gl/glut.h>
+		int angle = 0;
+		void init(){
+		    glutInitDisplayMode(GLUT_SINGLE|GLUT_RGBA);
+		    glutInitWindowSize(200,200);
+		    glutCreateWindow("旋转的尤他茶壶");
+		}
+		void Paint(){
+		    glClear(GL_COLOR_BUFFER_BIT);
+		    glLoadIdentity();
+		    gluPerspective(30, 1, 1, 100);//观察体规定
+		    glTranslatef(0, 0, -6.5); //远移6.5单位
+		    glRotated(angle, 0, 0, 1);//绕z轴
+		    glutSolidTeapot(1);//半径为1
+		    glFlush();
+		}
+		void timer(int millis){
+		    angle = (angle + 2) % 360; //角度间隔2度
+		    glutPostRedisplay();
+		    glutTimerFunc(millis, timer, millis);
+		}
+		int main(int argc, char *argv[]){
+		    glutInit(&argc, argv);
+		    init();
+		    glutTimerFunc(25, timer, 25);//时间间隔25ms
+		    glutDisplayFunc(Paint);
+		    glutMainLoop();
+		}
+![](2-4.png)
+- 6-5 请使用OpenGL、GLU和GLUT编写一个简单的多视口演示程序。要求：在屏幕窗口左下角的1/4部分显示一个红色的填充正三角形；在屏幕窗口右上角的1/4部分显示一个绿色的填充正方形；三角形和正方形的左下角顶点坐标值均为(0,0)，右下角顶点坐标值均为(1, 0)；裁剪窗口均为(-0.1, -0.1)～(1.1, 1.1)；程序窗口的大小为(200, 200)，标题为“多视口演示”。
+
+		#include <gl/glut.h>
+		int angle = 0;
+		void init(){
+		    glutInitDisplayMode(GLUT_SINGLE|GLUT_RGBA);
+		    glutInitWindowSize(200,200);
+		    glutCreateWindow("多视口演示");
+		}
+		void Viewport(int x, int y, int w, int h){
+		    glViewport(x, y, w, h);
+		    glLoadIdentity();
+		    gluOrtho2D(-0.1, 1.1, -0.1, 1.1);
+		}
+		void Paint(){
+		    int w = glutGet(GLUT_WINDOW_WIDTH) / 2;
+		    int h = glutGet(GLUT_WINDOW_HEIGHT) / 2;
+		    glClear(GL_COLOR_BUFFER_BIT);
+		    Viewport(0, 0, w, h);
+		    glColor3f(1, 0, 0);
+		    glBegin(GL_TRIANGLES);
+		    glVertex2d(0, 0);
+		    glVertex2d(1, 0);
+		    glVertex2d(0.5, 0.8660);
+		    glEnd();
+		    Viewport(w, h, w, h);
+		    glColor3f(0, 1, 0);
+		    glRectf(0,0,1,1);
+		    glFlush();
+		}
+		int main(int argc, char *argv[]){
+		    glutInit(&argc, argv);
+		    init();
+		    glutDisplayFunc(Paint);
+		    glutMainLoop();
+		}
+![](2-5.png)
+- 6-6 请使用OpenGL、GLU和GLUT编写一个多视口演示程序。要求：① 在屏幕窗口左下角的1/4部分显示一个红色的填充矩形，该矩形的一对对角顶点是(0, 0)和(1, 1)；② 在屏幕窗口右下角的1/4部分显示一个绿色的填充犹他茶壶，茶壶半径为0.4，并向右向上各移0.5；③ 在屏幕窗口上部居中的1/4部分显示一个蓝色的填充正三角形，该正三角形的左下角顶点是(0, 0)，右下角顶点是(1, 0)；④ 裁剪窗口均为(-0.1, -0.1)～(1.1, 1.1)，程序窗口的大小为(200, 200)，背景为黑色，标题为“多视口演示”。
+
+		#include <gl/glut.h>
+		void init(){
+		    glutInitDisplayMode(GLUT_SINGLE|GLUT_RGBA);
+		    glutInitWindowSize(200,200);
+		    glutCreateWindow("多视口演示");
+		}
+		void Viewport(int x, int y, int w, int h){
+		    glViewport(x, y, w, h);
+		    glLoadIdentity();
+		    gluOrtho2D(-0.1, 1.1, -0.1, 1.1);
+		}
+		void Paint(){
+		    int w = glutGet(GLUT_WINDOW_WIDTH) / 2;
+		    int h = glutGet(GLUT_WINDOW_HEIGHT) / 2;
+		    glClear(GL_COLOR_BUFFER_BIT);
+		    Viewport(0, 0, w, h);//左下角
+		    glColor3f(1, 0, 0);
+		    glRectf(0,0,1,1);
+		    Viewport(w, 0, w, h);//右下角
+		    glColor3f(0, 1, 0);
+		    glTranslated(0.5,0.5,0);
+		    glutSolidTeapot(0.4);
+		    Viewport(w/2, h, w, h);//上中部
+		    glColor3f(0, 0, 1);
+		    glBegin(GL_TRIANGLES);
+		    glVertex2d(0, 0);
+		    glVertex2d(1, 0);
+		    glVertex2d(0.5, 0.8660);
+		    glEnd();
+		    glFlush();
+		}
+		int main(int argc, char *argv[]){
+		    glutInit(&argc, argv);
+		    init();
+		    glutDisplayFunc(Paint);
+		    glutMainLoop();
+		}
+
+![](2-6.png)
+
+# 第三章作业
 1. 请写出OpenGL中指定点的大小和线宽的函数，要求写出完整的函数原型。
 		
 		void glPointSize(GLfloat size)
