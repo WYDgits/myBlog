@@ -1,2 +1,2 @@
 # Hexo Blog
->[Demo](http://106.75.80.200/)
+>[Demo](http://wydgit.top)

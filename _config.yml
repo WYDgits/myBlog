@@ -13,13 +13,14 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://106.75.80.200/
+url: http://www.wydgit.top/
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :title/
+#permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
-  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+  trailing_index: false  # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: false  # Set to false to remove trailing '.html' from permalinks
 
 # Directory
 source_dir: source
@@ -97,7 +98,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: material
+theme: ayer
 
 
 #live2d
@@ -112,9 +113,9 @@ live2d:
   model:
     use: live2d-widget-model-hibiki
   display:
-    position: left
-    width: 125
-    height: 250
+    position: right
+    width: 200
+    height: 400
   mobile:
     show: true
     scale: 0.5

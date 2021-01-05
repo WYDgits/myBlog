@@ -63,7 +63,7 @@ thumbnail:
 #        type available value: A (animal), C (culture), N (nature), S (space), T (travel)
 background:
     purecolor: "#F5F5F5"
-    bgimg: "/img/bg5.jpg"
+    bgimg: ""
     bing:
         enable: false
         parameter:
@@ -72,10 +72,10 @@ background:
 img:
     logo: "/img/snow.png"
     avatar: "/img/myAvatar.jpg"
-    daily_pic: "/img/bg4.jpg"
-    sidebar_header: "/img/bg7.jpg"
+    daily_pic: ""
+    sidebar_header: ""
     random_thumbnail: "/img/random/material-"
-    footer_image:
+    #footer_image:
         #upyun_logo:
             #link: "https://www.upyun.com/"
             #src: "/img/upyun_logo.svg"
@@ -104,7 +104,7 @@ copyright_since: 2019
 # You can specify the text you want to show in footer, HTML tag is supported.
 #   For example, you can setup ICP license number as:
 #       '<a href="http://www.miitbeian.gov.cn" rel="nofollow">某ICP备xxxxxxxx号-x</a>'
-footer_text:
+footer_text: '<a href="http://www.beian.miit.gov.cn/">豫ICP备20009293号-1</a>'
 
 # Qrcode for redirect at other device
 #    use: choose which method to generate the qrcode for each posts.
