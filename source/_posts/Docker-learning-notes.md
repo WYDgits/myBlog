@@ -81,7 +81,12 @@ tags:
 		- --name：为创建的容器命名。
 - 进入容器
 
-		docker exec 参数 # 退出容器，容器不会关闭
+		docker exec 容器名称 操作命令等参数  # 退出容器，容器不会关闭 ，而且
+
+		-例如：我要将查看myblog为名称的容器的路径/usr/local/apache2
+		 docker exec myblog ls /usr/loacl/apache2 
+		
+
 - 启动容器
 
 		docker start 容器名称
@@ -139,7 +144,7 @@ tags:
 		docker run -it --name-=c1 -volumes-from c3 centos:7 /bin/bash
 		docker run -it --name-=c2 -volumes-from c3 centos:7 /bin/bash
 
-#Docker应用部署
+# Docker应用部署
 ## MySQL部署
 - 搜索MySQL镜像
 

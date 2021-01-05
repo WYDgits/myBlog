@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    about |  阿东哟
+    About Me |  阿东哟
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -44,9 +44,17 @@
 <body>
   <div id="app">
     
+      <canvas class="fireworks"></canvas>
+      <style>
+        .fireworks {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 99999;
+          pointer-events: none;
+        }
+      </style>
       
-      <canvas width="1777" height="841"
-        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
       
     <main class="content on">
       <section class="outer">
@@ -62,7 +70,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  about
+  About Me
 </h1>
  
 
@@ -70,7 +78,17 @@
        
     <div class="article-entry" itemprop="articleBody">
        
-   
+  <blockquote>
+<p>菜鸟一个。</p>
+</blockquote>
+<p>GitHub:<a href="https://github.com/WYDgits/" target="_blank" rel="noopener">WYDgits</a></p>
+<center>
+    <img title="myAvatar" style="border-radius:100px;" width="200" src="/img/avatar.jpg">
+</center>
+
+
+
+ 
       <!-- reward -->
       
     </div>
@@ -101,30 +119,17 @@
     <ul>
       <li>
         
-        
-        
-        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
-        <span class="division">|</span>
-        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
-        
       </li>
     </ul>
     <ul>
       <li>
-        
-        
-        <span>
-  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
-  <span class="division">|</span>
-  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
-</span>
         
       </li>
     </ul>
     <ul>
       
         <li>
-          <a href="http://www.beian.miit.gov.cn/" target="_black" rel="nofollow">豫ICP备20009293号</a>
+          <a href="http://www.beian.miit.gov.cn/" target="_black" rel="nofollow">豫ICP备20009293号-1</a>
         </li>
         
     </ul>
@@ -353,19 +358,16 @@
 
 <!-- busuanzi  -->
 
-
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
-
-
 <!-- ClickLove -->
 
 <!-- ClickBoom1 -->
 
+<script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script>
+
+<script src="/js/clickBoom1.js"></script>
+
+
 <!-- ClickBoom2 -->
-
-
-<script src="/js/clickBoom2.js"></script>
-
 
 <!-- CodeCopy -->
 
